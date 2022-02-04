@@ -1,0 +1,56 @@
+---
+layout: null
+title: Pep Talk
+---
+<!DOCTYPE html>
+<html lang="en-AU" class="default">
+
+<head>
+  <title>{{ page.title }}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="{{ site.production_url }}{{ page.url }}" />
+  <link rel="home" href="{{ site.production_url }}" />
+  <link rel="icon" href="https://henrikbecker.blob.core.windows.net/img/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://henrikbecker.blob.core.windows.net/img/favicon192x192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/css/uikit.min.css" />
+  <style>
+    .default {
+      background-color: #465A56;
+      color: aliceblue;
+    }
+    blockquote {
+      font-family: 'Open Sans', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      font-style: normal;
+      font-size: 4rem;
+    }
+  </style>
+</head>
+
+<body class="default">
+  <blockquote class="uk-position-center uk-text-center default">
+    <div id="pep"></div>
+    <cite id="source"></cite>
+  </blockquote>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/js/uikit.min.js"></script>
+  <script>
+    var peps = {{ site.data.pep | jsonify }};
+    document.addEventListener('DOMContentLoaded', function() {
+      var interval = 15 * 60 * 1000;
+      var pep = function() {
+        var pep = peps[Math.floor(Math.random() * peps.length)];
+        document.title = '{{ page.title }} - ' + pep.title;
+        document.getElementById('pep').innerText = pep.title;
+        document.getElementById('source').style.display = pep.source ? 'block' : 'none';
+        document.getElementById('source').innerText = pep.source;
+      };
+      window.setInterval(pep, interval);
+      pep();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+_site/*
+*.orig
+*.lock
+.DS_Store
+.sass-cache
+.jekyll-metadata
+.rbenv-version
+.rvmrc
+.vs
+.vscode
+Thumbs.db
+desktop.ini
+!.gitkeep
